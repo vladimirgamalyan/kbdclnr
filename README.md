@@ -6,7 +6,7 @@
 
 ![Windows](https://img.shields.io/badge/Windows-10%2F11-0078D6?logo=windows&logoColor=white)
 ![Language](https://img.shields.io/badge/C-WinAPI-A8B9CC?logo=c&logoColor=white)
-![Size](https://img.shields.io/badge/exe-%E2%89%88157_KB-success)
+![Size](https://img.shields.io/badge/exe-%E2%89%88132_KB-success)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
 <img src="assets/screenshot.png" alt="kbdclnr window" width="584">

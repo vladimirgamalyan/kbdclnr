@@ -33,7 +33,7 @@ image's pixel size, so replacing the image never changes the window geometry.
 
 ## Consequences
 
-- The exe grows by the compressed size of the image (~46 KB for the current
+- The exe grows by the compressed size of the image (~21 KB for the current
   one) instead of the ~340 KB an uncompressed 480×240 BMP would cost, and the
   image is replaced by swapping one PNG file and rebuilding.
 - The build gained a resource-compilation step (`llvm-rc kbdclnr.rc`) and three
