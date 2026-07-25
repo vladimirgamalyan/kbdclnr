@@ -1,0 +1,1 @@
+#define IDR_WINDOW_IMAGE 101

@@ -6,7 +6,7 @@
 
 ![Windows](https://img.shields.io/badge/Windows-10%2F11-0078D6?logo=windows&logoColor=white)
 ![Language](https://img.shields.io/badge/C-WinAPI-A8B9CC?logo=c&logoColor=white)
-![Size](https://img.shields.io/badge/exe-%E2%89%88110_KB-success)
+![Size](https://img.shields.io/badge/exe-%E2%89%88157_KB-success)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
 <img src="assets/screenshot.png" alt="kbdclnr window" width="584">
@@ -22,8 +22,7 @@ exactly that:
 1. **Run `kbdclnr.exe`** → all keys are disabled, the mouse keeps working.
 2. Clean the keyboard as long as you like — the window stays on top
    as a reminder that the lock is active.
-3. **Close the window** (the “Unlock and exit” button or the close button,
-   with the mouse) → the keyboard works again.
+3. **Close the window** with the mouse → the keyboard works again.
 
 ## Download
 
@@ -44,12 +43,24 @@ hook automatically — the keyboard can never stay locked.
 - The on-screen keyboard and other software input sources are blocked too
   (the hook swallows injected events as well).
 
+## The window image
+
+The window shows a single image and nothing else. It lives in
+`assets/window.png` and is compiled into the exe as an `RCDATA` resource, so
+the exe stays self-contained. To change it, replace that file and rebuild.
+
+The image is stretched to the client area, which is 480×240 logical pixels
+(more on a high-DPI display). For a crisp result on a 150% display, supply the
+image at 720×360 or larger.
+
 ## Building
 
 All you need is clang (or any C compiler with the Windows SDK):
 
 ```sh
-clang -O2 kbdclnr.c -o kbdclnr.exe -luser32 -lgdi32 "-Wl,/SUBSYSTEM:WINDOWS"
+llvm-rc kbdclnr.rc
+clang -O2 kbdclnr.c kbdclnr.res -o kbdclnr.exe \
+    -luser32 -lgdi32 -lole32 -lshlwapi -lwindowscodecs "-Wl,/SUBSYSTEM:WINDOWS"
 ```
 
 ## License
