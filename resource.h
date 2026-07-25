@@ -1,1 +1,2 @@
 #define IDR_WINDOW_IMAGE 101
+#define IDI_APP_ICON     102

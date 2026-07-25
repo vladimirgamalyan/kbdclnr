@@ -151,13 +151,18 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrev, LPSTR lpCmdLine, int nC
 
     g_image = LoadImageResource(hInstance, IDR_WINDOW_IMAGE);
 
-    WNDCLASSW wc = {0};
+    WNDCLASSEXW wc = {0};
+    wc.cbSize = sizeof(wc);
     wc.lpfnWndProc = WndProc;
     wc.hInstance = hInstance;
     wc.hCursor = LoadCursor(NULL, IDC_ARROW);
     wc.lpszClassName = L"kbdclnrWnd";
-    wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);
-    RegisterClassW(&wc);
+    wc.hIcon = LoadIconW(hInstance, MAKEINTRESOURCEW(IDI_APP_ICON));
+    /* Load the title-bar icon at its own size so it isn't a scaled-down 32×32. */
+    wc.hIconSm = (HICON)LoadImageW(hInstance, MAKEINTRESOURCEW(IDI_APP_ICON),
+                                   IMAGE_ICON, GetSystemMetrics(SM_CXSMICON),
+                                   GetSystemMetrics(SM_CYSMICON), 0);
+    RegisterClassExW(&wc);
 
     /* Size the window so that its client area is exactly the image size. */
     DWORD style = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU;
